@@ -23,20 +23,21 @@ async def text_handler(update, context):
         else:
             await update.message.reply_text("لطفاً فایل PDF را ارسال کنید.")
     else:
-        await update.message.reply_text("لطفاً ابتدا یکی از گزینه‌های موجود را انتخاب کنید.")
+        await update.message.reply_text('سلام! لطفاً یکی از گزینه‌ها را انتخاب کنید:\n\nبرای شروع /start را بفرستید.')
 
 async def document_handler(update, context):
     chat_id = update.effective_chat.id
     if chat_id in user_states and user_states[chat_id] == 'extract_pdf':
-        file = await update.message.document.get_file()
-        file_path = os.path.join("downloads", update.message.document.file_name)
-        await file.download(file_path)
-        from services.pdf_extractor import extract_text_from_pdf
-        text = extract_text_from_pdf(file_path)
-        await update.message.reply_text("متن استخراج شده:\n" + text)
-        user_states.pop(chat_id)
+         file = await update.message.document.get_file()
+         file_path = os.path.join("downloads", update.message.document.file_name)
+         await file.download_to_drive(file_path)
+         from services.pdf_extractor import extract_text_from_pdf
+         text = extract_text_from_pdf(file_path)
+         await update.message.reply_text("متن استخراج شده:\n" + text)
+         user_states.pop(chat_id)
     else:
-        await update.message.reply_text("لطفاً ابتدا یکی از گزینه‌های موجود را انتخاب کنید.")
+         await update.message.reply_text("لطفاً ابتدا یکی از گزینه‌های موجود را انتخاب کنید.")
+
 
 def main():
     application = Application.builder().token(TOKEN).build()
