@@ -1,5 +1,6 @@
 python-telegram-bot==20.0
-hazm 
-networkx 
-scikit-learn 
-numpy
+PyPDF2==3.0.1
+numpy==1.23.5
+scikit-learn==1.2.2
+hazm==0.7.0
+httpx==0.24.0

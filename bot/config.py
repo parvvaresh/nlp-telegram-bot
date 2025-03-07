@@ -1,2 +1,0 @@
-TELEGRAM_BOT_TOKEN = "" # add your token
-MAX_SUMMARY_LENGTH = 200

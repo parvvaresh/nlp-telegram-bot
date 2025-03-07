@@ -25,4 +25,3 @@ def summarize_text(text, num_sentences=3):
     ranked_sentences = sorted(((scores[i], s) for i, s in enumerate(sentences)), reverse=True)
     summary = ' '.join([s for _, s in ranked_sentences[:num_sentences]])
     return summary
-
